@@ -1,6 +1,8 @@
-# Nordigen PHP Library
+# Nordigen PHP(7.1) Library
 
-This is official PHP client library for [GoCardless Bank Account Data](https://gocardless.com/bank-account-data/).
+**This is a fork from [https://github.com/nordigen/nordigen-php](https://github.com/nordigen/nordigen-php) repostitory, so I can use API in php 7.1. I hope it helps others who cannot use the latest version of php due to other dependencies. Remdme.md has been partially rewritten to comply with php 7.1. I left the other parts in their original form.**
+
+This is a **non-official** PHP client library for [GoCardless Bank Account Data](https://gocardless.com/bank-account-data/).
 
 For a full list of endpoints and arguments, see the [docs](https://developer.gocardless.com/bank-account-data/quick-start-guide).
 
@@ -9,14 +11,14 @@ Before starting to use API you will need to create a new secret and get your `SE
 
 ## Requirements
 
-* PHP >= 7.4
+* PHP >= 7.1
 
 ## Installation
 
 Install library via composer:
 
 ```sh
-composer require nordigen/nordigen-php
+composer require natsu007/nordigen-php-7.1
 ```
 
 ## Example application
@@ -98,14 +100,8 @@ $transactions = $account->getAccountTransactions("2021-12-01", "2022-01-30");
 $premiumTransactions = $account->getPremiumAccountTransactions();
 ```
 
-In order to use Premium endpoin please contact our [bank-account-data-support@gocardless.com](bank-account-data-support@gocardless.com)
-
 ## Tests
 
 ```php
 ./vendor/bin/phpunit
 ```
-
-## Support
-
-For any inquiries please contact support at [bank-account-data-support@gocardless.com](bank-account-data-support@gocardless.com) or create an issue in the repository.

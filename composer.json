@@ -1,15 +1,13 @@
 {
-    "name": "nordigen/nordigen-php",
-    "description": "Nordigen official API client for PHP",
+    "name": "natsu007/nordigen-php-7.1",
+    "description": "Nordigen API client for PHP",
     "type": "library",
     "authors": [
         {
-            "name": "Nordigen Solutions",
-            "email": "support@nordigen.com",
-            "homepage": "https://nordigen.com"
+            "name": "Natsu007",
+            "email": "kiss.sandor89@gmail.com"
         }
     ],
-    "homepage": "https://nordigen.com",
     "license": "MIT",
     "keywords": [
         "nordigen",
