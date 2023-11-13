@@ -10,7 +10,10 @@ class RequestHandler
 {
     use RequestHandlerTrait;
 
-    private string $accessToken;
+    /**
+     * @var string
+     */
+    private $accessToken;
 
     public function __construct(string $baseUri, string $secretId, string $secretKey, ?ClientInterface $client)
     {
@@ -58,7 +61,7 @@ class RequestHandler
      *
      * @return void
      */
-    public function setAccessToken(string $accessToken): void
+    public function setAccessToken($accessToken): void
     {
         $this->accessToken = $accessToken;
         $this->httpClient = new Client([

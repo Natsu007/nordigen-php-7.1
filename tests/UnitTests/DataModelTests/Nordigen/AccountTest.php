@@ -13,14 +13,35 @@ use Nordigen\NordigenPHP\API\NordigenClient;
 
 class AccountTest extends TestCase
 {
-    private static ?Client $client;
-    private static NordigenClient $nordigenClient;
-    private static ?MockHandler $mock;
-    private static ?HandlerStack $handlerStack;
+    /**
+     * @var \GuzzleHttp\Client|null
+     */
+    private static $client;
+    /**
+     * @var \Nordigen\NordigenPHP\API\NordigenClient
+     */
+    private static $nordigenClient;
+    /**
+     * @var \GuzzleHttp\Handler\MockHandler|null
+     */
+    private static $mock;
+    /**
+     * @var \GuzzleHttp\HandlerStack|null
+     */
+    private static $handlerStack;
 
-    private static string $responseRequisition;
-    private static string $accountId;
-    private static Account $accountInstance;
+    /**
+     * @var string
+     */
+    private static $responseRequisition;
+    /**
+     * @var string
+     */
+    private static $accountId;
+    /**
+     * @var \Nordigen\NordigenPHP\API\Account
+     */
+    private static $accountInstance;
 
     public static function setUpBeforeClass(): void
     {

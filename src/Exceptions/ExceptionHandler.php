@@ -8,7 +8,10 @@ use Psr\Http\Message\ResponseInterface;
 
 class ExceptionHandler
 {
-    private static array $institutionExceptionMap = [
+    /**
+     * @var mixed[]
+     */
+    private static $institutionExceptionMap = [
         'UnknownRequestError' => InstitutionExceptions\UnknownRequestError::class,
         'AccessExpiredError' => InstitutionExceptions\AccessExpiredError::class,
         'AccountInactiveError' => InstitutionExceptions\AccountInactiveError::class,
@@ -35,7 +38,7 @@ class ExceptionHandler
      * @param ResponseInterface $response
      * @return void
      */
-    public static function handleException(ResponseInterface $response): void
+    public static function handleException($response): void
     {
         $content = $response->getBody()->getContents();
         $json = json_decode($content, true);

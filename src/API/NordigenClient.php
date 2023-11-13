@@ -11,13 +11,31 @@ class NordigenClient
 {
     public const BASE_URL = 'https://ob.gocardless.com/api/v2/';
 
-    private RequestHandler $requestHandler;
-    public Institution $institution;
-    public EndUserAgreement $endUserAgreement;
-    public Requisition $requisition;
+    /**
+     * @var \Nordigen\NordigenPHP\API\RequestHandler
+     */
+    private $requestHandler;
+    /**
+     * @var \Nordigen\NordigenPHP\API\Institution
+     */
+    public $institution;
+    /**
+     * @var \Nordigen\NordigenPHP\API\EndUserAgreement
+     */
+    public $endUserAgreement;
+    /**
+     * @var \Nordigen\NordigenPHP\API\Requisition
+     */
+    public $requisition;
 
-    private string $refreshToken;
-    private string $requisitionLink;
+    /**
+     * @var string
+     */
+    private $refreshToken;
+    /**
+     * @var string
+     */
+    private $requisitionLink;
 
     public function __construct(string $secretId, string $secretKey, ?ClientInterface $client = null)
     {
@@ -32,7 +50,7 @@ class NordigenClient
      *
      * @return Account
      */
-    public function account(string $accountId): Account
+    public function account($accountId): Account
     {
         return new Account($this->requestHandler, $accountId);
     }
@@ -57,18 +75,19 @@ class NordigenClient
      * @param bool|null $redirectImmediate Option to enable redirect back to the client after account list received
      *
      * @return array
+     * @param mixed[]|null $accessScopes
      */
     public function initSession(
-        string  $institutionIdentifier,
-        string  $redirect,
-        int     $maxHistoricalDays = 90,
-        int     $accessValidForDays = 90,
-        ?string $reference = null,
-        ?array $accessScopes = ['details', 'balances', 'transactions'],
-        ?string $userLanguage = null,
-        ?string $ssn = null,
-        ?bool $accountSelection = null,
-        ?bool $redirectImmediate = null
+        $institutionIdentifier,
+        $redirect,
+        $maxHistoricalDays = 90,
+        $accessValidForDays = 90,
+        $reference = null,
+        $accessScopes = ['details', 'balances', 'transactions'],
+        $userLanguage = null,
+        $ssn = null,
+        $accountSelection = null,
+        $redirectImmediate = null
     ): array
     {
         $endUserAgreement = $this->endUserAgreement->createEndUserAgreement(

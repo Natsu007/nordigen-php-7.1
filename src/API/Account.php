@@ -6,7 +6,10 @@ use Nordigen\NordigenPHP\API\RequestHandler;
 
 class Account {
 
-    private RequestHandler $requestHandler;
+    /**
+     * @var \Nordigen\NordigenPHP\API\RequestHandler
+     */
+    private $requestHandler;
 
     public function __construct(RequestHandler $requestHandler, string $accountId) {
         $this->requestHandler = $requestHandler;
@@ -55,10 +58,12 @@ class Account {
     /**
      * Retrieve account transactions.
      * @param string $accountId
-     * 
+     *
      * @return array
+     * @param string|null $dateFrom
+     * @param string|null $dateTo
      */
-    public function getAccountTransactions(?string $dateFrom = null, ?string $dateTo = null): array
+    public function getAccountTransactions($dateFrom = null, $dateTo = null): array
     {
         $params = [
             'query' => []
@@ -80,7 +85,7 @@ class Account {
      *
      * @return array
      */
-    public function getPremiumAccountTransactions(?string $country = null, ?string $dateFrom = null, ?string $dateTo = null): array
+    public function getPremiumAccountTransactions($country = null, $dateFrom = null, $dateTo = null): array
     {
         $params = [
             'query' => []

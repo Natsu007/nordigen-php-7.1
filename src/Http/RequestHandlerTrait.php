@@ -9,10 +9,20 @@ use GuzzleHttp\ClientInterface;
 
 trait RequestHandlerTrait
 {
-    protected ClientInterface $httpClient;
-    protected string $baseUri;
+    /**
+     * @var \GuzzleHttp\ClientInterface
+     */
+    protected $httpClient;
+    /**
+     * @var string
+     */
+    protected $baseUri;
 
-    public function get(string $uri, array $options = []): ResponseInterface
+    /**
+     * @param string $uri
+     * @param mixed[] $options
+     */
+    public function get($uri, $options = []): ResponseInterface
     {
         try {
             $response = $this->httpClient->get($uri, $options);
@@ -22,7 +32,11 @@ trait RequestHandlerTrait
         }
     }
 
-    public function post(string $uri, array $options = []): ResponseInterface
+    /**
+     * @param string $uri
+     * @param mixed[] $options
+     */
+    public function post($uri, $options = []): ResponseInterface
     {
         try {
             $response = $this->httpClient->post($uri, $options);
@@ -32,7 +46,11 @@ trait RequestHandlerTrait
         }
     }
 
-    public function put(string $uri, array $options = []): ResponseInterface
+    /**
+     * @param string $uri
+     * @param mixed[] $options
+     */
+    public function put($uri, $options = []): ResponseInterface
     {
         try {
             $response = $this->httpClient->put($uri, $options);
@@ -42,7 +60,11 @@ trait RequestHandlerTrait
         }
     }
 
-    public function delete(string $uri, array $options = []): ResponseInterface
+    /**
+     * @param string $uri
+     * @param mixed[] $options
+     */
+    public function delete($uri, $options = []): ResponseInterface
     {
         try {
             $response = $this->httpClient->delete($uri, $options);

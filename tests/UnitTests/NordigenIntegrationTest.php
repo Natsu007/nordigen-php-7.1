@@ -11,12 +11,30 @@ use PHPUnit\Framework\TestCase;
 
 class NordigenIntegrationTest extends TestCase
 {
-    private static ?Client $client;
-    private static NordigenClient $nordigenClient;
-    private static ?MockHandler $mock;
-    private static ?HandlerStack $handlerStack;
-    private static string $responseEUA;
-    private static string $responseRequisition;
+    /**
+     * @var \GuzzleHttp\Client|null
+     */
+    private static $client;
+    /**
+     * @var \Nordigen\NordigenPHP\API\NordigenClient
+     */
+    private static $nordigenClient;
+    /**
+     * @var \GuzzleHttp\Handler\MockHandler|null
+     */
+    private static $mock;
+    /**
+     * @var \GuzzleHttp\HandlerStack|null
+     */
+    private static $handlerStack;
+    /**
+     * @var string
+     */
+    private static $responseEUA;
+    /**
+     * @var string
+     */
+    private static $responseRequisition;
 
     public static function setUpBeforeClass(): void
     {

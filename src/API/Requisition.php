@@ -7,7 +7,10 @@ use Nordigen\NordigenPHP\API\RequestHandler;
 class Requisition
 {
 
-    private RequestHandler $requestHandler;
+    /**
+     * @var \Nordigen\NordigenPHP\API\RequestHandler
+     */
+    private $requestHandler;
 
     public function __construct(RequestHandler $requestHandler) {
         $this->requestHandler = $requestHandler;
@@ -39,14 +42,14 @@ class Requisition
      * @return array
      */
     public function createRequisition(
-        string $redirect,
-        string $institutionId,
-        ?string $endUserAgreementId = null,
-        ?string $reference = null,
-        ?string $userLanguage = null,
-        ?string $ssn = null,
-        ?bool $accountSelection = null,
-        ?bool $redirectImmediate = null
+        $redirect,
+        $institutionId,
+        $endUserAgreementId = null,
+        $reference = null,
+        $userLanguage = null,
+        $ssn = null,
+        $accountSelection = null,
+        $redirectImmediate = null
     ): array
     {
         $payload = [
@@ -73,7 +76,7 @@ class Requisition
      *
      * @return array
      */
-    public function getRequisition(string $requisitionId): array
+    public function getRequisition($requisitionId): array
     {
         $response = $this->requestHandler->get("requisitions/{$requisitionId}/");
         $json = json_decode($response->getBody()->getContents(), true);
@@ -86,7 +89,7 @@ class Requisition
      *
      * @return bool Whether the requisition was successfully deleted.
      */
-    public function deleteRequisition(string $requisitionId): void
+    public function deleteRequisition($requisitionId): void
     {
         $this->requestHandler->delete("requisitions/{$requisitionId}/");
     }

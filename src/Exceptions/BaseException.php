@@ -7,7 +7,10 @@ use Throwable;
 
 class BaseException extends \Exception
 {
-    private ResponseInterface $response;
+    /**
+     * @var \Psr\Http\Message\ResponseInterface
+     */
+    private $response;
 
     public function __construct(ResponseInterface $response, $message = '', $code = 0, Throwable $previous = null)
     {

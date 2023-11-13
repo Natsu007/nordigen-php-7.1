@@ -6,7 +6,10 @@ use Nordigen\NordigenPHP\API\RequestHandler;
 
 class EndUserAgreement
 {
-    private RequestHandler $requestHandler;
+    /**
+     * @var \Nordigen\NordigenPHP\API\RequestHandler
+     */
+    private $requestHandler;
 
     public function __construct(RequestHandler $requestHandler) {
         $this->requestHandler = $requestHandler;
@@ -29,16 +32,16 @@ class EndUserAgreement
      * Create a new End-user Agreement.
      * @param string $institutionId The ID of the Institution.
      * @param string[] $accessScope The requested access scope. All by default. See Enums\AccessScope for possible values.
-     * @param int|null $maxHistoricalDays Maximum number of days of transaction data to retrieve. 90 by default.
-     * @param int|null $accessValidForDays How long access to the end-user's account will be available. 90 days by default.
+     * @param int $maxHistoricalDays Maximum number of days of transaction data to retrieve. 90 by default.
+     * @param int $accessValidForDays How long access to the end-user's account will be available. 90 days by default.
      *
      * @return array
      */
     public function createEndUserAgreement(
-        string $institutionId,
-        array $accessScope = ['details', 'balances', 'transactions'],
-        int $maxHistoricalDays = 90,
-        int $accessValidForDays = 90
+        $institutionId,
+        $accessScope = ['details', 'balances', 'transactions'],
+        $maxHistoricalDays = 90,
+        $accessValidForDays = 90
     ): array
     {
         $payload = [
@@ -59,8 +62,9 @@ class EndUserAgreement
      * @param string $euaId The ID of the End-user Agreement.
      *
      * @return array
+     * @param string $endUserAgreementId
      */
-    public function getEndUserAgreement(string $endUserAgreementId): array
+    public function getEndUserAgreement($endUserAgreementId): array
     {
         $response = $this->requestHandler->get("agreements/enduser/{$endUserAgreementId}/");
         $json = json_decode($response->getBody()->getContents(), true);
@@ -72,8 +76,9 @@ class EndUserAgreement
      * @param string $euaId The ID of the End-user agreement.
      *
      * @return void
+     * @param string $endUserAgreementId
      */
-    public function deleteEndUserAgreement(string $endUserAgreementId): void
+    public function deleteEndUserAgreement($endUserAgreementId): void
     {
         $this->requestHandler->delete("agreements/enduser/{$endUserAgreementId}/");
     }
@@ -85,11 +90,12 @@ class EndUserAgreement
      * @param string $ipAddress The End-user's IP address.
      *
      * @return array The newly accepted End-user agreement.
+     * @param string $endUserAgreementId
      */
     public function acceptEndUserAgreement(
-        string $endUserAgreementId,
-        string $userAgent,
-        string $ipAddress
+        $endUserAgreementId,
+        $userAgent,
+        $ipAddress
     ): array
     {
         $payload = [

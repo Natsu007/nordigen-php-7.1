@@ -7,7 +7,10 @@ use Nordigen\NordigenPHP\API\RequestHandler;
 class Institution
 {
 
-    private RequestHandler $requestHandler;
+    /**
+     * @var \Nordigen\NordigenPHP\API\RequestHandler
+     */
+    private $requestHandler;
 
     public function __construct(RequestHandler $requestHandler) {
         $this->requestHandler = $requestHandler;
@@ -31,7 +34,7 @@ class Institution
      *
      * @return array
      */
-    public function getInstitutionsByCountry(string $countryCode): array
+    public function getInstitutionsByCountry($countryCode): array
     {
         $response = $this->requestHandler->get('institutions/', [
             'query' => [
@@ -48,7 +51,7 @@ class Institution
      * 
      * @return array
      */
-    public function getInstitution(string $institutionId): array
+    public function getInstitution($institutionId): array
     {
         $response = $this->requestHandler->get("institutions/{$institutionId}/");
         $json = json_decode($response->getBody()->getContents(), true);
